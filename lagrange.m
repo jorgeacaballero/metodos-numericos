@@ -42,6 +42,7 @@ function [valorNumerico,polinomio] = lagrange( x_values,y_values,xk )
         end
         disp(poli);
         polinomio = poli;
+        plot(x_values,y_values) 
     end
 
 end
