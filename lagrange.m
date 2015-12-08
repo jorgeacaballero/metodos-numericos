@@ -15,7 +15,7 @@ function [valorNumerico,polinomio] = lagrange( x_values,y_values,xk )
             denominador = 1;
             
             
-            xmin = '(x-';
+            xmin = '*(x-';
             closee = ')';
             for j=1:n
                 if(i==j)
@@ -29,9 +29,9 @@ function [valorNumerico,polinomio] = lagrange( x_values,y_values,xk )
             end
             denInv = (1/denominador)*y_values(i);
             if(i==1)
-                poli = [poli '(' num2str(denInv) ')*' numX];
+                poli = [poli '(' num2str(denInv) ')' numX];
             else
-                poli = [poli '+' '(' num2str(denInv) ')*' numX];
+                poli = [poli '+' '(' num2str(denInv) ')' numX];
             end
             
             
@@ -41,8 +41,11 @@ function [valorNumerico,polinomio] = lagrange( x_values,y_values,xk )
             valorNumerico = valorNumerico+y_values(i)*(L);
         end
         disp(poli);
-        polinomio = poli;
-        plot(x_values,y_values) 
+        polinomio = mat2str(poli);
+        disp(polinomio);
+        figure
+        plot(x_values,y_values)
+        %plot(x_values,polinomio)
     end
 
 end
