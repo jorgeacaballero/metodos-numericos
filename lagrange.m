@@ -8,7 +8,7 @@ function [valorNumerico,polinomio] = lagrange( x_values,y_values,xk )
        valorNumerico=0;
     else
         valorNumerico=0;
-        poli = '';
+        poli = 'f(x)=';
         for i=1:n
             numerador = 1;
             numX = '';
@@ -40,7 +40,7 @@ function [valorNumerico,polinomio] = lagrange( x_values,y_values,xk )
             
             valorNumerico = valorNumerico+y_values(i)*(L);
         end
-        %disp(poli);
+        disp(poli);
         polinomio = poli;
     end
 
