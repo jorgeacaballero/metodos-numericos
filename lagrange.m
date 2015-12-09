@@ -9,6 +9,7 @@ function [valorNumerico,polinomio] = lagrange( x_values,y_values,xk )
     else
         valorNumerico=0;
         poli = '';
+        M = '';
         for i=1:n
             numerador = 1;
             numX = '';
@@ -24,14 +25,25 @@ function [valorNumerico,polinomio] = lagrange( x_values,y_values,xk )
                     numerador = numerador*(xk-x_values(j));
                     denominador = denominador*(x_values(i)-x_values(j));
                     %numX = numX+'(x-'+x_values(j)+')';
-                    numX = [numX xmin num2str(x_values(j)) closee];
+                    %numX = [numX xmin num2str(x_values(j)) closee];
+                    numX =strcat(numX,xmin);
+                    numX =strcat(numX,num2str(x_values(j)));
+                    numX =strcat(numX,closee);
                 end
             end
             denInv = (1/denominador)*y_values(i);
             if(i==1)
                 poli = [poli '(' num2str(denInv) ')' numX];
+                M = strcat(M,'(');
+                M = strcat(M,num2str(denInv));
+                M = strcat(M,')');
+                M = strcat(M,numX);
             else
                 poli = [poli '+' '(' num2str(denInv) ')' numX];
+                M = strcat(M,'+(');
+                M = strcat(M,num2str(denInv));
+                M = strcat(M,')');
+                M = strcat(M,numX);
             end
             
             
@@ -43,7 +55,12 @@ function [valorNumerico,polinomio] = lagrange( x_values,y_values,xk )
         disp(poli);
         polinomio = mat2str(poli);
         disp(polinomio);
-        
+        disp(M);
+        syms x;
+        x = x_values(1):0.1:x_values(n);
+        figure
+        plot(x,subs(M),x_values,y_values);hold on;
+        %stem(x_values,y_values);
     end
 
 end
