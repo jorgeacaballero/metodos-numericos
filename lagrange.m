@@ -52,14 +52,13 @@ function [valorNumerico,polinomio] = lagrange( x_values,y_values,xk )
             
             valorNumerico = valorNumerico+y_values(i)*(L);
         end
-        disp(poli);
-        polinomio = mat2str(poli);
-        disp(polinomio);
-        disp(M);
+        polinomio = M;
+        disp(['f(x)=' polinomio]); 
         syms x;
         x = x_values(1):0.1:x_values(n);
         figure
-        plot(x,subs(M),x_values,y_values);hold on;
+        plot(x,subs(M));hold on;
+        scatter(x_values,y_values,'P','red');
         %stem(x_values,y_values);
     end
 
