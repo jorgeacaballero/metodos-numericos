@@ -1,4 +1,5 @@
-function y  = NR(a,n,p0,tol)
+function X = NR(a,p0,n)
+% Function :
 % Newton Raphson
 % Jorge Caballero
 % Problema 4
@@ -6,22 +7,26 @@ function y  = NR(a,n,p0,tol)
 % a: Funcion, variable tiene que ser x
 % n: numero de iteraciones
 % p0: aproximacion inicial
-% tol: precision (ej. 0.0001)
+fx = inline(a);
+fxd = inline(diff(sym(a)));
+disp(fxd);
 
-    disp('hola');
-    i = 0;
-    f = inline(a);
-    dif=diff(sym(a));
-    d = inline(dif);
-    while(i <= n)
-        p = p0 -(f(p0)/d(p0));
-        if(abs(p-p0) < tol)
-            y = p;
-            disp(y);
-            break
-        end
-        p0 = p;
-        i = i+1;
+x0 = p0;
+disp('NEWTON RAPHSON');
+disp(['F(X) = ' a]);
+disp(['X0 = ' num2str(x0)]);
+% Iterating
+for i = 1 : n
+    s1=sprintf('n = %1.0f',i);
+    disp(s1);
+    x1 = x0 - (fx(x0)/fxd(x0));
+    s2=sprintf(' X(%0.0f) = %0.15f',i,x1);
+    disp(s2);
+    if x1 == x0
+        break;
+    else
+        x0 = x1;        
     end
 end
 
+X = x1;
