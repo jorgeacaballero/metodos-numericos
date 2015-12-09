@@ -43,7 +43,17 @@ function [valorNumerico,polinomio] = lagrange( x_values,y_values,xk )
         disp(poli);
         polinomio = mat2str(poli);
         disp(polinomio);
-        
+        %x = x_values;
+        %y= sym(polinomio);
+        %f = @(x) polinomio;
+        %array = zeros([1,n]);
+        %x = 0:pi/100:2*pi;
+        syms x;
+        eval(['equation(x) = ' polinomio ';']);
+        x = x_values(1):0.1:X(n);
+        figure
+        plot(x,subs())
+        %plot(x_values,y_values,x_values,subs(polinomio)); 
     end
 
 end
