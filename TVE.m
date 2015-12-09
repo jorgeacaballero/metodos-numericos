@@ -7,7 +7,9 @@ function [ y ] = TVE( f,a,b )
 % a: límite inferior del intervalo
 % b: límite superior del intervalo
 
+p0 = (a+b)/2;
 
+sol = NR(f,p0,30);
 
 end
 
