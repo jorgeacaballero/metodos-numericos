@@ -1,13 +1,12 @@
 function [x0] = DNumerica(fz, x, n, h)
 %UNTITLED Summary of this function goes here
 %   Detailed explanation goes here
-%fz ; funci?n
-%x ; coordenada en x del punto
-%n ; n?mero de puntos
-%h ; c?digo para el tipo de f?rmula
+%?(?) ; funci?n
+%?0 ; coordenada en ? del punto
+%? ; n?mero de puntos
+%? ; c?digo para el tipo de f?rmula
 % ; tama?o de paso
 %
-
 f = inline(fz);
 switch n
     case 2
