@@ -18,17 +18,7 @@ solx = ceil(solve(eqn,x));
 %sacar iteraciones
 
 %Programa
-ban = 0;
-    if(b<a)
-        disp('Datos incorrectos, el limite inferior es mayor que el superior');
-        ban = 1;
-    end
-    if (err>.1)
-            disp('Datos incorrectos, el error es mas grande que el esperado, usar e<.1');
-        ban = 1;
-    end
-    
-if ban == 0
+if a < b
     
     iter = 0;
     di = zeros(double(solx),6);
@@ -98,8 +88,13 @@ if ban == 0
         pm2 = pm;
     end
     
-end
-
+else
+    if(b>a)
+        disp('Datos incorrectos');
+    end
+    if (err<.1)
+            disp('Datos incorrectos');
+    end
     
 end
 

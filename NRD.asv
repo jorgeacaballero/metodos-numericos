@@ -1,7 +1,7 @@
-function [ output_args ] = NRD( x_values,y_values, n ,h )
+function [answ] = NRD( x_values,y_values, e ,h )
 %UNTITLED Summary of this function goes here
 %   Detailed explanation goes here
-
+%x_values en forma de vector 
 
 [b,a] = lagrange(x_values,y_values,(x_values(1)+x_values(length(x_values))/2) );
 xo0 = double((x_values(1)+x_values(length(x_values)))/2);
@@ -11,7 +11,6 @@ fx = inline(a);
 %fxd = inline(diff(sym(a)));
 
 fxd = inline(diff(sym(a)));
-disp(fxd);
 
 
 inte = 0;
@@ -20,24 +19,33 @@ valante = xo0 ;
 answ = 0;
 
 
-di = zeros(n,3);
 
-while (1==1)
-   inte = inte + 1;
-    if inte > n 
-        break
-    else 
-       
-       %answ =  valante - (fx(valante)/DNumerica(sym(a), xo0, 2, .1));
-       answ =  valante - (fx(valante)/DNumerica(sym(a), valante, 2, .1));
-       
-       valante = answ;
-       di(iter,1) = inte;
-       di(iter,2) = a;
-       di(iter,3) = pm;
-      
-    end
+disp('Se ocupa informacion extra por el usuario para la funcion de DNumerica: ')
+error = 1;
+
+n = 0;
+
+
+while error>=e
+    n = n+1;
+    inte = inte + 1;
+    %answ =  valante - (fx(valante)/DNumerica(sym(a), xo0, 2, .1));
+    answ =  valante - (fx(valante)/DNumerica(sym(a), valante, 4, h));
+    a1= sprintf('n = %1.0f',n);
+    disp(a1)
+    a3 = sprintf(' p(%0.0f) = %0.15f',n,answ);
+    disp(a3)
+    a2= sprintf(' e(%0.0f) = %0.15f',n,error);
+    disp(a2)
+    error = abs(answ - valante);
+    valante = answ;
+    
+    
+    
 end
+
+
+
 
 end
 
