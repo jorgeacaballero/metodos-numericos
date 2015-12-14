@@ -21,8 +21,10 @@ while error>=e
     s1=sprintf('n = %1.0f',i);
     disp(s1);
     x1 = x0 - (fx(x0)/fxd(x0));
-    error=abs((x1-x0)/x1);
-    s2=sprintf(' X(%0.0f) = %0.15f',i,x1);
+    error=abs(x1-x0);
+    en=sprintf(' e(%0.0f) = %0.15f',i,error);
+    disp(en);
+    s2=sprintf(' p(%0.0f) = %0.15f',i,x1);
     disp(s2);
     i = i+1;
     if x1 == x0

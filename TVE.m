@@ -1,4 +1,4 @@
-function [ y ] = TVE( f,a,b )
+function [ minf, maxf ] = TVE( f,a,b )
 % Valor Máximo y Mínimo
 % Jorge Caballero
 % Problema 5
@@ -9,20 +9,26 @@ function [ y ] = TVE( f,a,b )
 
 p0 = (a+b)/2;
 
-sol = NR(f,p0,0.001);
+sol = NR(f,p0,0.0000000000001);
 
 if sol > a && sol < b
     disp('p pertenece al conjunto [a,b]');
     bis = Biseccion(f,a,b,0.0001);
     disp('Biseccion = ');
     disp(sort(bis));
+    
 end
-disp('NR = ');
-disp(sol);
 
 min = fminbnd(inline(f),a,b);
-maxi = max(f);
+g = inline(sym(['(' char(f) ')*(' char('-1') ')']));
+maxi = fminbnd(g,a,b);
 
+disp('min = ');
+disp(min);
+disp('max = ');
 disp(maxi);
+
+minf = min;
+maxf = maxi;
 end
 
