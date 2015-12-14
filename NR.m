@@ -16,6 +16,12 @@ disp('NEWTON RAPHSON');
 disp(['F(X) = ' a]);
 disp(['X0 = ' num2str(x0)]);
 i = 1;
+
+
+if x0 == 0 
+    disp('Derivada no puede ser == 0');
+    return;
+end
 % Iterating
 while error>=e
     s1=sprintf('n = %1.0f',i);

@@ -39,6 +39,7 @@ function [ resultado ] = CGauss( funcion, a, b, n )
             
         end
     end
+    
                 
               
 
