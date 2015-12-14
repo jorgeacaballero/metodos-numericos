@@ -1,4 +1,4 @@
-function X = NR(a,p0,n)
+function X = NR(a,p0,e)
 % Function :
 % Newton Raphson
 % Jorge Caballero
@@ -10,18 +10,21 @@ function X = NR(a,p0,n)
 fx = inline(a);
 fxd = inline(diff(sym(a)));
 disp(fxd);
-
+error =1;
 x0 = p0;
 disp('NEWTON RAPHSON');
 disp(['F(X) = ' a]);
 disp(['X0 = ' num2str(x0)]);
+i = 1;
 % Iterating
-for i = 1 : n
+while error>=e
     s1=sprintf('n = %1.0f',i);
     disp(s1);
     x1 = x0 - (fx(x0)/fxd(x0));
+    error=abs((x1-x0)/x1);
     s2=sprintf(' X(%0.0f) = %0.15f',i,x1);
     disp(s2);
+    i = i+1;
     if x1 == x0
         break;
     else

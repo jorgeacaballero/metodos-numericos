@@ -9,11 +9,12 @@ function [ y ] = TVE( f,a,b )
 
 p0 = (a+b)/2;
 
-sol = NR(f,p0,30);
+sol = NR(f,p0,0.001);
 
 if sol > a && sol < b
     disp('p pertenece al conjunto [a,b]');
     bis = Biseccion(f,a,b,0.0001);
+    disp('Biseccion = ');
     disp(sort(bis));
 end
 disp('NR = ');
